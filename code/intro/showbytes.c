@@ -1,8 +1,8 @@
 #include <stdio.h>
-
+#include<string.h>
 typedef unsigned char *byte_pointer;
 
-void show_bytes(unsigned char * start, size_t len) {
+void show_bytes(unsigned char *start, size_t len) {
     for (size_t i = 0; i < len; i++) {
         printf("%.2x", start[i]);
     }
@@ -15,7 +15,7 @@ void show_float(float x) { show_bytes((unsigned char *)&x, sizeof(float)); }
 
 void show_pointer(void *x) { show_bytes((unsigned char *)&x, sizeof(void *)); }
 
-void test_show_bytes(int val){
+void test_show_bytes(int val) {
     int ival = val;
     float fval = (float)ival;
     int *pval = &ival;
@@ -25,7 +25,7 @@ void test_show_bytes(int val){
 }
 
 int main() {
-   test_show_bytes(12345);
+    test_show_bytes(12345);
 
     printf("------------\n");
     int val = 0x87654321;
@@ -34,6 +34,10 @@ int main() {
     show_bytes(valp, 1);
     show_bytes(valp, 2);
     show_bytes(valp, 3);
-
+    printf("------------\n");
+    show_int(3510593);
+    show_float(3510593.0);
+    const char * s = "abcdef";
+    show_bytes((byte_pointer)s, strlen(s));
     return 0;
 }
